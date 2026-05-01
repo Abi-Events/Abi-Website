@@ -1,0 +1,523 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Figtree", sans-serif;
+}
+
+#logo {
+    width: 90px;
+    height: 20px;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: #ECECEC;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    position: sticky; /* Keeps nav at top while scrolling */
+    top: 0;
+    z-index: 1000;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+#navbar li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #121212;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+    color: #898A88;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #898A88;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+/* --- Mobile Responsive Logic --- */
+
+#mobile {
+    display: none; /* Hidden on desktop */
+    align-items: center;
+}
+
+#close {
+    display: none; /* Hidden on desktop */
+}
+
+@media (max-width: 799px) {
+    #navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 0;
+        right: -300px; /* Hidden off-screen to the right */
+        height: 100vh;
+        width: 300px;
+        background-color: #ECECEC;
+        box-shadow: 0 40px 60px rgba(0,0,0,0.1);
+        padding: 80px 0 0 10px;
+        transition: 0.3s ease;
+        z-index: 999;
+    }
+
+    #navbar.active {
+        right: 0px; /* Slides in when active class is added */
+    }
+
+    #navbar li {
+        margin-bottom: 25px;
+    }
+
+    #mobile {
+        display: flex;
+    }
+
+    #mobile i {
+        color: #1a1a1a;
+        font-size: 24px;
+        padding-left: 20px;
+        cursor: pointer;
+    }
+
+    #close {
+        display: initial;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        color: #222;
+        font-size: 24px;
+    }
+}
+
+
+/* --- HERO SECTION --- */
+#services-hero {
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("Pic/Services hero.JPG");
+    height: 70vh; /* Increased height for better impact */
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-icon {
+    width: 120px; /* Adjust size based on your crest image */
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.title-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#services-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; /* Balanced size for readability */
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.hero-underline {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    margin-top: 10px;
+}
+
+.hero-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 300;
+    margin-top: 15px;
+}
+
+@media (max-width: 799px) {
+    #services-hero h1 {
+        font-size: 3.3rem;
+        letter-spacing: 2px;
+    }
+    
+    .hero-icon {
+        width: 80px;
+        margin-bottom: 20px;
+    }
+}
+
+/* --- SERVICE DETAIL SECTION --- */
+#service-detail {
+    padding: 80px 10%;
+}
+
+.detail-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.text-side {
+    flex: 1;
+}
+
+.text-side h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+}
+
+.text-side p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.text-side ul {
+    list-style: none; /* Custom bullets if desired */
+}
+
+.text-side ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.text-side ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #000;
+}
+
+.image-side {
+    flex: 1;
+}
+
+.image-side img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px; /* Slight rounding like the image */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Responsive for Mobile */
+@media (max-width: 799px) {
+    .detail-container {
+        flex-direction: column;
+    }
+    .hero-overlay h1 {
+        font-size: 3rem; /* Matches your About Us mobile fallback */
+        letter-spacing: 2px;
+    }
+}
+
+/* --- SERVICES GALLERY --- */
+.services-gallery {
+    display: flex;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 40px; 
+    flex-wrap: nowrap;
+    gap: 15px; /* <--- ADD THIS: adjust 15px to your liking */
+    padding: 0 15px; /* <--- ADD THIS: keeps the gap balanced on the edges */
+}
+
+.gallery-item {
+    flex: 1; /* Gives each image equal width */
+    overflow: hidden;
+    height: 350px; /* Adjust this height to match your design preference */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images fill the box without stretching */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Optional: Slight zoom effect on hover for interactivity */
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive: Stack them on top of each other on mobile */
+@media (max-width: 768px) {
+    /* Better Mobile Gallery */
+@media (max-width: 768px) {
+    .services-gallery {
+        flex-direction: column; /* Stacks images vertically */
+        width: 100%;            /* Resets width */
+        margin-left: 0;
+        margin-right: 0;
+        left: 0;
+    }
+    
+    .gallery-item {
+        width: 100% !important;
+        height: 300px;         /* Gives them a consistent, visible height */
+        margin-bottom: 5px;    /* Adds a tiny gap between stacked photos */
+    }
+}
+}
+
+/* --- LAYOUT REVERSAL --- */
+.detail-container.reverse {
+    flex-direction: row-reverse; /* Puts image on left, text on right */
+}
+
+
+
+/* --- SECTION SPACING --- */
+#launch-detail {
+    padding-top: 100px; /* Separates it from the gallery above */
+}
+
+/* Ensure global gallery and container styles apply to both sections */
+#service-detail, #launch-detail {
+    padding: 80px 10%;
+}
+
+/* 1. Reset padding for the gallery sections so the images can touch the edges */
+#service-detail, #launch-detail {
+    padding: 80px 0 0 0; /* Top padding 80px, Sides and Bottom 0 */
+}
+
+/* 2. Put the side padding back ONLY on the text/image detail container */
+.detail-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 0 10%; /* Keeps your text aligned with the rest of the site */
+    margin-bottom: 20px;
+}
+
+/* 3. Stretch the gallery to 100% of the screen width */
+.services-gallery {
+    display: flex;
+    width: 100vw; /* 100% of the Viewport Width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.gallery-item {
+    flex: 1; 
+    height: 350px; /* Keeping your "perfect" height */
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keeps images from looking squished while filling width */
+    display: block;
+}
+/* Add a gap between each major service section */
+.service-section {
+    padding: 30px 0 0 0; 
+    margin-top: 0 !important; /* This creates the physical space between sections */
+    overflow-x: hidden; 
+}
+
+/* Ensure the first section doesn't have a giant gap at the very top of the page */
+.service-section:first-of-type {
+    margin-top: 0;
+    border-top: none;
+}
+/* --- MOSAIC GALLERY (Based on your image) --- */
+/* --- MOSAIC GALLERY --- */
+.mosaic-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-gap: 15px; /* <--- CHANGE THIS from 0px to 15px */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: #fff; 
+    padding: 0 15px; /* <--- ADD THIS to match the sides */
+}
+
+.mosaic-gallery .gallery-item {
+    height: 500px; /* Slightly taller for that luxury feel */
+    overflow: hidden;
+}
+
+.mosaic-gallery .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.mosaic-gallery .gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Responsive adjustment for tablets and phones */
+@media (max-width: 992px) {
+    .mosaic-gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .mosaic-gallery {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+        grid-gap: 5px;
+    }
+    .mosaic-gallery .gallery-item {
+        height: 300px;
+    }
+}
+
+
+
+
+
+
+
+
+#Contact {
+    background-color: #0e0e0e;
+    color: #fff;
+    padding: 60px 0 0 0;
+    text-align: center;
+}
+
+.footer-heading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+    text-align: left;
+    flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
+}
+
+.footer-col {
+    margin: 20px;
+}
+
+.footer-col h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+/* Brand & Social Column */
+.brand-col { text-align: center; }
+.footer-logo { width: 120px; filter: brightness(0) invert(1); } 
+.logo-subtext { font-size: 10px; letter-spacing: 2px; margin-top: 10px; color: #bbb; text-transform: uppercase; }
+
+.social-icons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #ffffff;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #898A88; 
+    transform: translateY(-3px);
+}
+
+/* Lists and Links */
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col a { color: #fff; text-decoration: none; transition: 0.3s; }
+.footer-col a:hover { color: #898A88; }
+
+.footer-col p { 
+    margin-bottom: 12px; 
+    font-family: 'Roboto', sans-serif; 
+    font-size: 1rem; 
+    color: #ddd; 
+}
+
+.footer-col i {
+    margin-right: 8px;
+    width: 20px; /* Aligns icons vertically */
+}
+
+/* Copyright Bar */
+.copyright-bar {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 20px 0;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+}

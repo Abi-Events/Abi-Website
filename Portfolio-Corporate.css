@@ -1,0 +1,391 @@
+/* --- 1. Global Reset & Variables --- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #fff;
+    --text-color: #000000;
+    --accent-color: #898A88;
+    --grid-gap: 15px;
+    --mobile-padding: 20px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Figtree", sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, .hero-title, .grid-title {
+    font-family: 'Playfair Display', serif !important;
+}
+
+/* --- 2. Header & Navigation --- */
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: #ECECEC;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#logo {
+    width: 90px;
+    height: 20px;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #121212;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+    color: var(--accent-color);
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: var(--accent-color);
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+#navbar li a:hover, #navbar li a.active { color: var(--accent-color); }
+
+/* Desktop Hide Mobile Elements */
+#mobile, #close { display: none; }
+/* --- 3. Hero Section --- */
+.hero {
+    display: flex;
+    height: 60vh;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid #333;
+}
+
+.hero-content {
+    flex: 1;
+    padding-left: 10%;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.hero-title1 {
+    font-size: 1.5rem;
+    font-family: 'Figtree', sans-serif;
+}
+
+.hero-image {
+    flex: 1;
+    height: 100%;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 799px) {
+
+    /* --- MOBILE HERO SECTION ADJUSTMENTS --- */
+    
+     #navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 0;
+        right: -300px; /* Hidden off-screen to the right */
+        height: 100vh;
+        width: 300px;
+        background-color: #ECECEC;
+        box-shadow: 0 40px 60px rgba(0,0,0,0.1);
+        padding: 80px 0 0 10px;
+        transition: 0.3s ease;
+        z-index: 999;
+    }
+
+    #navbar.active {
+        right: 0px; /* Slides in when active class is added */
+    }
+
+    #navbar li {
+        margin-bottom: 25px;
+    }
+
+    #mobile {
+        display: flex;
+    }
+
+    #mobile i {
+        color: #1a1a1a;
+        font-size: 24px;
+        padding-left: 20px;
+        cursor: pointer;
+    }
+
+    #close {
+        display: initial;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        color: #222;
+        font-size: 24px;
+    }
+    .hero {
+        flex-direction: column;   /* Change from horizontal to vertical stacking */
+        height: auto;             /* Set height based on content, not fixed 60vh */
+        padding-top: 40px;         /* Creates top space above the title */
+        padding-bottom: 20px;      /* Small bottom padding */
+        border-bottom: none;       /* Optionally removes the line between sections for cleaner stack */
+    }
+
+    .hero-content {
+        width: 100%;             /* Allow title section to take full width */
+        padding: 0 var(--mobile-padding) 40px var(--mobile-padding); /* Left, right, and bottom padding for the title block */
+        text-align: left;        /* Ensures all text is aligned to the left */
+        order: 1;                /* Force title section to appear first in the stack */
+    }
+
+    .hero-title {
+        font-size: 3.3rem;       /* Reduces size slightly to fit nicely on small screens */
+        font-weight: 450;        /* Keep the Playfair Display thin weight */
+        line-height: 1.2;
+    }
+
+    .hero-image {
+        width: 100%;             /* Ensure image container spans full width */
+        height: auto;            /* Allow image height to be naturally determined */
+        order: 2;                /* Force image section to appear second in the stack */
+    }
+
+    .hero-image img {
+        display: block;          /* Good practice to avoid inline-block spacing issues */
+        width: 100%;
+        height: auto;            /* Maintain image's natural aspect ratio */
+            
+        aspect-ratio: 16 / 9;    /* Sets a common aspect ratio; adjust if needed based on photo */
+    }
+}
+
+/* --- 4. Gallery Grid & Titles --- */
+.grid-title {
+    margin-left: 120px;
+    margin-top: 50px;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: var(--grid-gap);
+    padding: 40px 10%;
+}
+
+.grid-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.grid-item:hover img { transform: scale(1.05); }
+
+/* Masonry Spans */
+.tall { grid-row: span 2; }
+.extra-tall { grid-row: span 3; }
+.overlay-box { grid-row: span 2; position: relative; }
+
+.overlay-text {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(139, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* --- 5. Lightbox --- */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    user-select: none;
+}
+
+.fade-in { animation: slideInEffect 0.5s ease-out; }
+
+@keyframes slideInEffect {
+    from { opacity: 0; transform: translateX(30px) scale(0.98); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.close-btn, .prev, .next {
+    position: absolute;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 2001;
+}
+
+.close-btn { top: 20px; right: 30px; font-size: 24px; opacity: 0.7; }
+.prev { left: 20px; top: 50%; font-size: 20px; opacity: 0.5; }
+.next { right: 20px; top: 50%; font-size: 20px; opacity: 0.5; }
+
+.close-btn:hover, .prev:hover, .next:hover { opacity: 1; }
+
+/* --- 6. Footer --- */
+#Contact {
+    background-color: #0e0e0e;
+    color: #fff;
+    padding: 60px 0 0 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.footer-col { margin: 20px; }
+.footer-col h3 { font-size: 1.6rem; margin-bottom: 25px; font-weight: 400; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col a { color: #fff; text-decoration: none; }
+.footer-col a:hover { color: var(--accent-color); }
+
+.brand-col { text-align: center; }
+.footer-logo { width: 120px; filter: brightness(0) invert(1); }
+
+.social-icons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a { color: #fff; font-size: 1.8rem; transition: 0.3s; }
+.social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
+
+.copyright-bar {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+/* --- 7. Responsive Mobile Logic (799px and below) --- */
+@media (max-width: 799px) {
+    /* Navbar Toggle */
+    #header { padding: 20px; }
+    #mobile { display: flex; }
+    #mobile i { font-size: 24px; padding-left: 20px; cursor: pointer; }
+
+    #navbar {
+        flex-direction: column;
+        position: fixed;
+        top: 0; right: -300px;
+        height: 100vh; width: 300px;
+        background-color: #ECECEC;
+        padding: 80px 0 0 20px;
+        transition: 0.3s ease;
+        z-index: 999;
+        align-items: flex-start;
+    }
+
+    #navbar.active { right: 0; }
+    #close { display: block; position: absolute; top: 30px; left: 30px; font-size: 24px; }
+
+    /* Hero & Grid Titles - LEFT ALIGNED */
+    .hero-content {
+        padding-left: var(--mobile-padding);
+        text-align: left;
+    }
+
+    .hero-title { font-size: 2.5rem; }
+
+    .grid-title {
+        margin-left: var(--mobile-padding);
+        margin-top: 30px;
+        text-align: left;
+        font-size: 1.8rem;
+    }
+
+    /* Stacking Gallery Grid */
+    .gallery-grid {
+        display: flex;
+        flex-direction: column;
+        padding: 10px var(--mobile-padding);
+        gap: 15px;
+    }
+
+    .grid-item, .grid-item.tall, .grid-item.extra-tall, .grid-item.overlay-box {
+        width: 100%;
+        height: auto;
+        min-height: 250px;
+    }
+
+    .grid-item:hover img { transform: none; }
+    .overlay-text { display: none; } /* Hide overlay text on mobile */
+    .grid-item.overlay-box img { opacity: 1; }
+}
